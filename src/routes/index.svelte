@@ -82,8 +82,8 @@
 <style>
 	#g {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
-		gap: 4px;
+		grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+		gap: .25em;
 		margin: 0;
 		padding: 0;
 	}

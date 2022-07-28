@@ -6,23 +6,23 @@
 	import Fuse from 'fuse.js'
 
 	export let init: string[]
-	let search = ''
+	let value = ''
 
 	const dispatch = createEventDispatcher()
 
 	$: engine = new Fuse(init)
 
 	$: {
-		if (search)
+		if (value)
 			dispatch(
 				'search',
-				engine.search(search).map(({ item }) => item)
+				engine.search(value).map(({ item }) => item)
 			)
 		else dispatch('search', init)
 	}
 </script>
 
-<form id="s">
+<form id="s" on:submit|preventDefault={() => {}}>
 	<div class="d">
 		<svg
 			class="s"
@@ -38,7 +38,7 @@
 			class="i"
 			type="search"
 			placeholder="Find some meme"
-			bind:value={search}
+			bind:value
 		/>
 	</div>
 </form>
@@ -63,7 +63,10 @@
 	}
 
 	#s > .d > .s {
+		min-width: 48px;
+		min-height: 48px;
 		transform: scale(0.5875);
+		stroke: var(--text);
 	}
 
 	#s > .d > .i {
